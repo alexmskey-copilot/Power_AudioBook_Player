@@ -10,6 +10,7 @@ A lightweight, user-focused Android audiobook player built for seamless listenin
 - **50,000+ organic downloads** with **zero marketing**
 - Ranked **Best in "Books" and "Entertaiment" categories** in RuStore
 - Published in **Chinese app ecosystems** (Huawei, Xiaomi)
+- Published in **South Korean app ecosystems** (Samsung)
 
 ## 🛠️ Technical Highlights
 - **Language**: Java  
