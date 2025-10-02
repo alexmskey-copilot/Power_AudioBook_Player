@@ -37,3 +37,5 @@ The app follows a **modular architecture**, where each feature is encapsulated i
 This approach ensures **maintainability, testability, and scalability** — even in a solo-developed project.
 
 > This project demonstrates full-cycle mobile development — from concept to a top-ranked app across **Russian, Chinese, and Korean** app stores.
+
+<img width="1080" height="1920" alt="image" src="https://github.com/user-attachments/assets/70c58422-75d8-4b75-b169-20016db0d237" />
