@@ -76,7 +76,6 @@ public class CustomizingScreen  extends AppCompatActivity {
     private Switch set_always_begin;
     private Switch use_audiobook_folder;
     private Switch time_speaking_sw;
-//    private Switch time_speaking_on_play_pause_sw;
     private Switch time_speaking_on_play_sw;
     private Switch time_speaking_on_pause_sw;
     private Switch nosave_speed;
@@ -156,7 +155,6 @@ public class CustomizingScreen  extends AppCompatActivity {
         set_always_begin =  (Switch) findViewById(R.id.alwaysBeginPart);
         use_audiobook_folder =  (Switch) findViewById(R.id.useAudioBookFolder);
         time_speaking_sw = (Switch) findViewById(R.id.time_speaking);
-//        time_speaking_on_play_pause_sw = (Switch) findViewById(R.id.time_speaking_play_stop);
         time_speaking_on_play_sw = (Switch) findViewById(R.id.time_speaking_play);
         time_speaking_on_pause_sw = (Switch) findViewById(R.id.time_speaking_stop);
         nosave_speed = (Switch) findViewById(R.id.nosave_speed);
@@ -230,14 +228,6 @@ public class CustomizingScreen  extends AppCompatActivity {
         colorButtonsReDraw ();
 
         appContext = getApplicationContext();
-
-//        folders_nomedia_seek();
-//        folder_ibvisible_view.setMinLines(DirHidden.size());
-//        String for_view = getString(R.string.folder_invisibility_list) + "\n\n";
-//        for (int i= 0; i< DirHidden.size(); i++) {
-//            for_view= for_view + "- " + DirHidden.get(i) + "\n";
-//        }
-//        folder_ibvisible_view.setText(for_view);
 
         View UI_spoilerHeader = findViewById(R.id.UI_spoiler);
         TextView UI_arrowIcon = findViewById(R.id.UI_arrowIcon);
@@ -697,7 +687,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                     MainActivity.button_color= getResources().getColor(R.color.purple_200, null);
                 else
                     MainActivity.button_color= getResources().getColor(R.color.purple_500, null);
-//                MainActivity.button_color= 0;
                 MainActivity.themes_change= true;
                 if (MainActivity.playing == 1)
                     MainActivity.play_after_customizing= true;
@@ -809,11 +798,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                 folder_ibvisible_view.setText(for_view);
             }
         });
-
-//        buttons_color1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryVariant, null));
-//        buttons_color1.setBackgroundColor(getResources().getColor(R.color.colorPrimary, getTheme().getResources(R.style.Theme_PowerBookPlayer)));
-//        appContext = getApplicationContext();
-//        buttons_color1.setBackgroundColor(ContextCompat.getColor(appContext, R.color.colorPrimary));
 
         if (!MainActivity.right_hand_interface       &&
             !MainActivity.left_hand_interface        &&
@@ -1232,8 +1216,6 @@ public class CustomizingScreen  extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 MainActivity.need_speed_step_005= true;
                 MainActivity.speed_step_005 = isChecked;
-//                if (isChecked) {
-//                }
             }
         });
 
@@ -1242,8 +1224,6 @@ public class CustomizingScreen  extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 MainActivity.need_always_begin_part= true;
                 MainActivity.always_begin_part = isChecked;
-//                if (isChecked) {
-//                }
             }
         });
 
@@ -1303,7 +1283,6 @@ public class CustomizingScreen  extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 MainActivity.need_time_speaking= true;
-//                MainActivity.time_speaking_pause_cfg = isChecked;
             }
         });
 
@@ -1330,7 +1309,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                 MainActivity.exit_only_in_menu_cfg = isChecked;
                 if (isChecked) {
                     backPressed_switch_to_background_sw.setChecked(false);
-//                    backPressed_switch_to_background_sw.setEnabled(false);
                     MainActivity.backPressed_switch_background_cfg = false;
                 }
                 else {
@@ -1354,7 +1332,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                 MainActivity.swap_fastMoving_goto_cfg = isChecked;
                 if (isChecked) {
                     exit_only_in_menu_sw.setChecked(false);
-//                    exit_only_in_menu_sw.setEnabled(false);
                     MainActivity.exit_only_in_menu_cfg = false;
                     swap_fastMoving_sw.setEnabled(true);
                     swap_fastMoving_sw.setChecked(MainActivity.swap_fast_moving_cfg);
@@ -1540,7 +1517,6 @@ public class CustomizingScreen  extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 MainActivity.buttons_size = progress;
-//                transparency_value.setText(getString(R.string.transparency_text) + (6 - MainActivity.buttonsTransparency));
                 MainActivity.need_buttons_size_change = true;
             }
 
@@ -1566,7 +1542,6 @@ public class CustomizingScreen  extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-//                pause_back_value_view.setText(" " + (MainActivity.back_in_time_cust+ 6) + " ");
                 MainActivity.need_back_in_time_cust = true;
             }
         });
@@ -1584,7 +1559,6 @@ public class CustomizingScreen  extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-//                pause_back_value_view.setText(" " + (MainActivity.back_in_time_cust+ 6) + " ");
                 MainActivity.need_fast_moving_cust = true;
             }
         });
@@ -1599,15 +1573,9 @@ public class CustomizingScreen  extends AppCompatActivity {
             buttons_color1.setBackgroundColor(getResources().getColor(R.color.purple_500, null));
         if (MainActivity.button_color== getResources().getColor(R.color.purple_200, null)
                 ||  MainActivity.button_color== getResources().getColor(R.color.purple_500, null)) {
-//            buttons_color1.setEnabled(false);
             buttons_color1.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color1.setEnabled(true);
-//            if (night_mode== 2)
-//                buttons_color1.setBackgroundColor(getResources().getColor(R.color.purple_200, null));
-//            else
-//                buttons_color1.setBackgroundColor(getResources().getColor(R.color.purple_500, null));
             buttons_color1.setIconResource(R.drawable.ic_media_play);
         }
 
@@ -1619,39 +1587,25 @@ public class CustomizingScreen  extends AppCompatActivity {
         }
         if (MainActivity.button_color== getResources().getColor(R.color.white, null)
                 ||  MainActivity.button_color== getResources().getColor(R.color.black, null)) {
-//            buttons_color2.setEnabled(false);
             buttons_color2.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color2.setEnabled(true);
-//            if (night_mode == 2) {
-//                buttons_color2.setBackgroundColor(getResources().getColor(R.color.white, null));
-//            }
-//            else {
-//                buttons_color2.setBackgroundColor(getResources().getColor(R.color.black, null));
-//            }
             buttons_color2.setIconResource(R.drawable.ic_media_play);
         }
 
         buttons_color3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark, null));
         if (MainActivity.button_color== getResources().getColor(R.color.colorPrimaryDark, null)) {
-//            buttons_color3.setEnabled(false);
             buttons_color3.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color3.setEnabled(true);
-//            buttons_color3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark, null));
             buttons_color3.setIconResource(R.drawable.ic_media_play);
         }
 
         buttons_color4.setBackgroundColor(getResources().getColor(R.color.colorAccent, null));
         if (MainActivity.button_color== getResources().getColor(R.color.colorAccent, null)) {
-//            buttons_color4.setEnabled(false);
             buttons_color4.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color4.setEnabled(true);
-//            buttons_color4.setBackgroundColor(getResources().getColor(R.color.colorAccent, null));
             buttons_color4.setIconResource(R.drawable.ic_media_play);
         }
 
@@ -1663,28 +1617,17 @@ public class CustomizingScreen  extends AppCompatActivity {
         }
         if (MainActivity.button_color== getResources().getColor(R.color.purple_501, null)
                 ||  MainActivity.button_color== getResources().getColor(R.color.teal_700, null)) {
-//            buttons_color5.setEnabled(false);
             buttons_color5.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color5.setEnabled(true);
-//            if (night_mode == 2) {
-//                buttons_color5.setBackgroundColor(getResources().getColor(R.color.purple_500, null));
-//            }
-//            else {
-//                buttons_color5.setBackgroundColor(getResources().getColor(R.color.teal_700, null));
-//            }
             buttons_color5.setIconResource(R.drawable.ic_media_play);
         }
 
         buttons_color6.setBackgroundColor(getResources().getColor(R.color.teal_200, null));
         if (MainActivity.button_color== getResources().getColor(R.color.teal_200, null)) {
-//            buttons_color6.setEnabled(false);
             buttons_color6.setIconResource(R.drawable.ic_media_pause);
         }
         else {
-//            buttons_color6.setEnabled(true);
-//            buttons_color6.setBackgroundColor(getResources().getColor(R.color.teal_200, null));
             buttons_color6.setIconResource(R.drawable.ic_media_play);
         }
         buttons_color1.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
@@ -1704,14 +1647,12 @@ public class CustomizingScreen  extends AppCompatActivity {
             StorageManager storage = MainActivity.appContext.getSystemService(StorageManager.class);
             File[] anyFiles;
             stores = storage.getStorageVolumes();
-//            ArrayDir.clear();
             DirHidden.clear();
 
             for (int i = 0; i < stores.size(); i++) {
                 if (stores.get(i).isRemovable()) {
                     ArrayDir.add("/storage/" + stores.get(i).getUuid());
                 } else {
-//                        anyFiles = new File("/storage/emulated/0/").listFiles();;
                     ArrayDir.add("/storage/emulated/0/");
                 }
             }
@@ -1725,23 +1666,10 @@ public class CustomizingScreen  extends AppCompatActivity {
                     work_file_name= aFile.toString();
                     if (work_file_name.contains("/Android/"))
                         continue;
-//                    if (work_file_name.contains("/WhatsApp/"))
-//                        continue;
-//                    if (work_file_name.endsWith(".thumbnails/.nomedia"))
-//                        continue;
-//                    if (work_file_name.endsWith(".picker_transcoded/.nomedia"))
-//                        continue;
-//                    if (work_file_name.endsWith(".share_protect/.nomedia"))
-//                        continue;
-//                    if (work_file_name.endsWith("_thumbnail/.nomedia"))
-//                        continue;
-//                    if (work_file_name.endsWith(".trashBin/.nomedia"))
-//                        continue;
+
                     file_dir_processing (aFile);
                 }
             }
-
-//            File[] unorderedFiles = new File(loc_path).listFiles();
         }
 
     }
@@ -1796,18 +1724,6 @@ public class CustomizingScreen  extends AppCompatActivity {
     }
 
     private   void dirHidden_add (String fileName) {
-//        if (fileName.endsWith(".thumbnails/.nomedia"))
-//            return;
-//        if (fileName.endsWith(".picker_transcoded/.nomedia"))
-//            return;
-//        if (fileName.endsWith(".share_protect/.nomedia"))
-//            return;
-//        if (fileName.endsWith("_thumbnail/.nomedia"))
-//            return;
-//        if (fileName.endsWith(".trashBin/.nomedia"))
-//            return;
-//        if (fileName.contains("/Android/"))
-//            return;
         fileName= fileName.substring(0, fileName.length() - "/.nomedia".length ());
         DirHidden.add(fileName);
     }
@@ -1821,7 +1737,6 @@ public class CustomizingScreen  extends AppCompatActivity {
         mainScroll.post(new Runnable() {
             @Override
             public void run() {
-//                mainScroll.fullScroll(ScrollView.FOCUS_DOWN);
                 if (scrollPosition== BEGIN_SCROLL) {
                     mainScroll.smoothScrollTo(0, mainScroll.getChildAt(0).getHeight());
                     scrollPosition = END_SCROLL;
@@ -1829,7 +1744,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                     return;
                 }
                 if (scrollPosition== END_SCROLL) {
-//                    mainScroll.fullScroll(ScrollView.FOCUS_UP);
                     mainScroll.smoothScrollTo(0, 0);
                     scrollPosition = BEGIN_SCROLL;
                     scrollButton.setImageResource(android.R.drawable.arrow_down_float);
@@ -1847,14 +1761,12 @@ public class CustomizingScreen  extends AppCompatActivity {
             MainActivity.themesDark = true;
             darkTheme.setChecked(true);
         }
-//        MainActivity.time_speaking_play_cfg = time_speaking_on_play_sw.isChecked();
-//        MainActivity.time_speaking_pause_cfg= time_speaking_on_pause_sw.isChecked();
+
         if (time_speaking_sw.isChecked()) {
             MainActivity.time_speaking_play_cfg= time_speaking_on_play_sw.isChecked();
             MainActivity.time_speaking_pause_cfg= time_speaking_on_pause_sw.isChecked();
             if (!MainActivity.time_speaking_play_cfg
               && !MainActivity.time_speaking_pause_cfg) {
-//                MainActivity.time_speaking_play_pause_cfg= true;
                 MainActivity.time_speaking_play_cfg= true;
                 MainActivity.time_speaking_pause_cfg= true;
                 time_speaking_on_play_sw.setChecked(true);
@@ -1871,18 +1783,13 @@ public class CustomizingScreen  extends AppCompatActivity {
     public void testBrightness() {
         if (MainActivity.full_brightness) {
             WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-//            if (layoutParams.screenBrightness< 1)
-//                sourceBrightness= layoutParams.screenBrightness;
             layoutParams.screenBrightness = BRIGHTNESS_OVERRIDE_FULL;
             getWindow().setAttributes(layoutParams);
         }
         if (!MainActivity.full_brightness) {
-//            if (sourceBrightness> 0) {
             WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-//            layoutParams.screenBrightness = sourceBrightness;
             layoutParams.screenBrightness = -1;
             getWindow().setAttributes(layoutParams);
-//            }
         }
     }
 
@@ -1920,17 +1827,6 @@ public class CustomizingScreen  extends AppCompatActivity {
                 }
             }
         }
-
-//        if (requestCode == MainActivity.FOLDERS_VISIBILITY_CODE) {
-//            folders_nomedia_seek();
-//            folder_ibvisible_view.setMinLines(DirHidden.size());
-//            String for_view = getString(R.string.folder_invisibility_list) + "\n\n";
-//            for (int i= 0; i< DirHidden.size(); i++) {
-//                for_view= for_view + "- " + DirHidden.get(i) + "\n";
-//            }
-//            folder_ibvisible_view.setText(for_view);
-//        }
     }
-
 
 }
