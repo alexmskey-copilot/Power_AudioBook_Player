@@ -30,8 +30,8 @@ The app follows a **modular architecture**, where each feature is encapsulated i
 - `MainActivity` — central navigation hub  
 - `PlayerService` — background audio playback with MediaPlayer, sleep timer, and speed control  
 - `SoundScreen` — local audiobook discovery and library browsing  
-- `LoadCovers` — automatic cover art fetching  
-- `Bookmarks` — bookmark management  
+- `LoadCovers` — manually cover art fetching  
+- `Bookmarks` — bookmarks management  
 - `CustomizingScreen` — user preferences and UI customization  
 
 This approach ensures **maintainability, testability, and scalability** — even in a solo-developed project.
