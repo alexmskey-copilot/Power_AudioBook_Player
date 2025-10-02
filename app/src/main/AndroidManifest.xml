@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:foregroundServiceType="mediaPlayback"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PowerBookPlayer">
+<!--
+
+-->
+        <receiver
+            android:name=".PABAppWidgetFull"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/p_a_b_app_widget_full_transparency_info" />
+        </receiver>
+        <receiver
+            android:name=".PABAppWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/p_a_b_app_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".PABAppWidget1x1"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/p_a_b_app_widget_1x1_info" />
+        </receiver>
+        <receiver
+            android:name=".PABAppWidgetFast"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/p_a_b_app_widget_fast_info" />
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.audiobook.powerbookplayer.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" /> <!-- Used by Android Auto -->
+        <meta-data
+            android:name="com.google.android.gms.car.notification.SmallIcon"
+            android:resource="@drawable/ic_auto_icon" />
+
+        <service
+            android:name=".service.PlayerService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".AlbumScreen"
+            android:label="@string/album_screen_text" />
+        <activity
+            android:exported="true"
+            android:name=".SoundScreen"
+            android:label="@string/soundScreen_text"
+
+            >
+
+        </activity>
+        <activity
+            android:name=".SoundScreenFolder"
+            android:label="@string/soundScreenFolder_text" />
+        <activity
+            android:name=".loadWorkFile"
+            android:label="@string/loadWorkFile_text" />
+        <activity
+            android:name=".Bookmarks"
+            android:label="@string/bookmarks_text"
+             />
+        <activity
+            android:name=".LoadCovers"
+            android:label="@string/menu_load_cover_text"
+            />
+        <activity
+            android:name=".SelectParts"
+            android:label="@string/select_parts_text"
+            />
+        <activity
+            android:name=".openAnyAudioFile"
+            android:label="@string/open_any_audio_file_text"
+            />
+        <activity
+            android:exported="true"
+            android:name=".openAnyAudioFileIntent"
+            android:label="@string/open_any_audio_file_text">
+            <intent-filter android:label="Power AudioBook Player"  android:exported="false">
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType= "audio/*" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".SleepTimer"
+            android:label="@string/sleepTimer_text" />
+        <activity
+            android:name=".FoldersVisibility"
+            android:label="@string/FolderVisibility_text" />
+        <activity
+            android:name=".HelpScreen"
+            android:label="@string/helpScreen_text" />
+        <activity
+            android:name=".HelpBookSelect"
+            android:label="@string/helpBookSelect_text" />
+        <activity
+            android:name=".AboutScreen"
+            android:label="@string/aboutScreen_text" />
+        <activity
+            android:name=".CustomizingScreen"
+            android:label="@string/customizing_name" />
+        <activity
+            android:name=".LinkTechSupport"
+            android:label="@string/linktechsupport_name" />
+        <activity
+            android:name=".TelegramChan"
+            android:label="@string/telegram_channel_name" />
+        <activity
+            android:name=".WhatNews"
+            android:label="@string/whatnews_name" />
+        <activity
+            android:name=".SimpleEqualizer"
+            android:label="@string/equalizer_name" />
+        <activity
+            android:name=".PermissionScreen"
+            android:label="@string/permissionScreen_text" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
