@@ -129,11 +129,7 @@ public class SoundScreen extends AppCompatActivity {
             MediaStore.Audio.Media.ARTIST_ID,
             MediaStore.Audio.Media.SIZE,
             MediaStore.Audio.Media.COMPOSER,
-//            MediaStore.Audio.Media.AUTHOR,
-//                MediaStore.Audio.Media.IS_AUDIOBOOK,
             MediaStore.Audio.Media.IS_MUSIC
-//            ,MediaStore.Audio.Media.TRACK
-//            ,MediaStore.Audio.Media.CD_TRACK_NUMBER
     };
 
     public static String[] old_projection = {
@@ -148,8 +144,6 @@ public class SoundScreen extends AppCompatActivity {
             MediaStore.Audio.Media.ARTIST_ID,
             MediaStore.Audio.Media.SIZE,
             MediaStore.Audio.Media.COMPOSER,
-//            MediaStore.Audio.Media.AUTHOR,
-//                MediaStore.Audio.Media.IS_AUDIOBOOK,
             MediaStore.Audio.Media.IS_MUSIC
     };
 
@@ -164,14 +158,12 @@ public class SoundScreen extends AppCompatActivity {
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.RELATIVE_PATH,
             MediaStore.Audio.Media.ALBUM_ID,
-//            MediaStore.Audio.Media.IS_AUDIOBOOK,
             MediaStore.Audio.Media.IS_MUSIC
     };
     public static String[] old_projection_album = {
             MediaStore.Audio.Media.ALBUM,
             MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.ALBUM_ID,
-//            MediaStore.Audio.Media.IS_AUDIOBOOK,
             MediaStore.Audio.Media.IS_MUSIC
     };
 
@@ -254,21 +246,15 @@ public class SoundScreen extends AppCompatActivity {
         setContentView(R.layout.activity_sound_screen);
         setupWindowInsets();
 
-//        File file = new File(Environment. getExternalStorageDirectory().getPath() + "/Music");
-//        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-//        sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" +
-//                Environment.getExternalStorageDirectory())));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             while (in_scaning) {
             }
-//            in_scaning = true;
 
             MediaScannerConnection.scanFile(MainActivity.appContext,
                     new String[]{Environment.getExternalStorageDirectory().getPath() + "/Music",
                             Environment.getExternalStorageDirectory().getPath() + "/Download",
                             Environment.getExternalStorageDirectory().getPath() + "/Movies",
                             Environment.getExternalStorageDirectory().getPath() + "/Audiobooks"},
-//                new String[] {"audio/*"},
                     null,
                     new MediaScannerConnection.OnScanCompletedListener() {
                         public void onScanCompleted(String path, Uri uri) {
@@ -324,9 +310,7 @@ public class SoundScreen extends AppCompatActivity {
         all_books_button = (Button) findViewById (R.id.all_books_button);
         all_books_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
         not_reading_button = (Button) findViewById (R.id.not_reading_button);
-//        not_reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
         in_read_button = (Button) findViewById (R.id.in_read_button);
-//        in_read_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
         reading_button = (Button) findViewById (R.id.reading_button);
         search_button = (ImageButton) findViewById (R.id.buttonSearch);
         search_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
@@ -336,12 +320,10 @@ public class SoundScreen extends AppCompatActivity {
             favorite_filter_button.setImageResource(R.drawable.ic_favorite_icon_foreground_negative);
         else
             favorite_filter_button.setImageResource(R.drawable.ic_favorite_icon_foreground);
-//        favorite_filter_button.setPadding(6, 14, 6, 14);
         search_string = (EditText) findViewById(R.id.searchString);
         if (search_text.length()> 0) {
             search_string.setText(search_text);
         }
-//        reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
         not_reading_button.setBackgroundColor(getResources().getColor(R.color.do_not_read_color, getTheme()));
         in_read_button.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
         reading_button.setBackgroundColor(getResources().getColor(R.color.read_color, getTheme()));
@@ -365,49 +347,85 @@ public class SoundScreen extends AppCompatActivity {
             all_books_button.setEnabled(false);
             all_books_button.setBackgroundColor(GRAY);
             all_books_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            not_reading_button.setEnabled(true);
+            not_reading_button.setBackgroundColor(MainActivity.button_color);
+            not_reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            not_reading_button.setBackgroundColor(getResources().getColor(R.color.do_not_read_color, getTheme()));
+            in_read_button.setEnabled(true);
+            in_read_button.setBackgroundColor(MainActivity.button_color);
+            in_read_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            in_read_button.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
+            reading_button.setEnabled(true);
+            reading_button.setBackgroundColor(MainActivity.button_color);
+            reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            reading_button.setBackgroundColor(getResources().getColor(R.color.read_color, getTheme()));
         }
         if (MainActivity.show_book_list == MainActivity.show_no_read_book) {
             not_reading_button.setEnabled(false);
             not_reading_button.setBackgroundColor(GRAY);
             not_reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setEnabled(true);
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            all_books_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            in_read_button.setEnabled(true);
+            in_read_button.setBackgroundColor(MainActivity.button_color);
+            in_read_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            in_read_button.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
+            reading_button.setEnabled(true);
+            reading_button.setBackgroundColor(MainActivity.button_color);
+            reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            reading_button.setBackgroundColor(getResources().getColor(R.color.read_color, getTheme()));
         }
         if (MainActivity.show_book_list == MainActivity.show_now_read_books) {
             in_read_button.setEnabled(false);
             in_read_button.setBackgroundColor(GRAY);
             in_read_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setEnabled(true);
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            all_books_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            not_reading_button.setEnabled(true);
+            not_reading_button.setBackgroundColor(MainActivity.button_color);
+            not_reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            not_reading_button.setBackgroundColor(getResources().getColor(R.color.do_not_read_color, getTheme()));
+            reading_button.setEnabled(true);
+            reading_button.setBackgroundColor(MainActivity.button_color);
+            reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            reading_button.setBackgroundColor(getResources().getColor(R.color.read_color, getTheme()));
         }
         if (MainActivity.show_book_list == MainActivity.show_read_books) {
             reading_button.setEnabled(false);
             reading_button.setBackgroundColor(GRAY);
             reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setEnabled(true);
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            all_books_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            all_books_button.setBackgroundColor(MainActivity.button_color);
+            not_reading_button.setEnabled(true);
+            not_reading_button.setBackgroundColor(MainActivity.button_color);
+            not_reading_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            not_reading_button.setBackgroundColor(getResources().getColor(R.color.do_not_read_color, getTheme()));
+            in_read_button.setEnabled(true);
+            in_read_button.setBackgroundColor(MainActivity.button_color);
+            in_read_button.setAlpha((float) ((float) MainActivity.buttonsTransparency/ 6.0));
+            in_read_button.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
         }
-//        if (MainActivity.show_cover)
-            show_cover_switch.setChecked(show_cover);
-//        else
-//           show_cover_switch.setChecked(false);
-
-//        getAllVideo ();
-
+        show_cover_switch.setChecked(show_cover);
 
         search_string.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                search_text = search_string.getText().toString();
-
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 search_text = s.toString().toLowerCase();
-//                setContentView(R.layout.activity_sound_screen);
-//                AlbumList.clear();
                 try {
-//                    getAllSongsFromSDCARD();
                     show_book_list_to_lh();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -435,10 +453,7 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 directoryAlbum= !directoryAlbum;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
-//                but_aldir.setBackgroundColor(GRAY);
-//                but_diral.setBackgroundColor(MainActivity.button_color);
                 try {
                     getAllSongsFromSDCARD();
                 } catch (IOException e) {
@@ -451,7 +466,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 directoryAlbum= !directoryAlbum;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -464,11 +478,8 @@ public class SoundScreen extends AppCompatActivity {
         but_question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                bquestion.setImageResource(R.drawable.sign_question_negative_foreground);
-//                String selAlbum = album;
                 Intent intent = new Intent(v.getContext(), HelpBookSelect.class);
                 startActivityForResult(intent, MainActivity.HELP_BOOK_SELECT_REQUEST_CODE);
-//                    startActivity(intent);
             }
         });
 
@@ -476,7 +487,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.show_book_list= MainActivity.show_all_books;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -490,7 +500,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.show_book_list= MainActivity.show_no_read_book;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -504,7 +513,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.show_book_list= MainActivity.show_now_read_books;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -518,7 +526,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.show_book_list= MainActivity.show_read_books;
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -572,7 +579,6 @@ public class SoundScreen extends AppCompatActivity {
                 MainActivity.need_show_cover= true;
                 if (isChecked)
                     Toast.makeText(getApplicationContext(), R.string.wait_cover_text, Toast.LENGTH_LONG).show();
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -583,12 +589,8 @@ public class SoundScreen extends AppCompatActivity {
         });
 
         delete_succes= false;
-//        linearLayout = (LinearLayout) findViewById(R.id.button_layer);
-//        linearLayout.removeAllViews();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 OR " + MediaStore.Audio.Media.IS_AUDIOBOOK + " != 0";
-//            selection = "";
             allsongsuri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
             projects = SoundScreen.projection;
             if (!directoryAlbum)
@@ -605,31 +607,20 @@ public class SoundScreen extends AppCompatActivity {
                 sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.ALBUM + " ASC";
         }
 
-//        String sortOrder = MediaStore.Audio.Media.ALBUM + " ASC ";// + MediaStore.Audio.Media.DISPLAY_NAME + " ASC";
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
             while (in_scaning) { }
         Cursor cursor = getApplicationContext().getContentResolver().query(allsongsuri,
                 projects, selection, null, sortOrder);
-//        if (cursor.moveToFirst()) {
           if (cursor.getCount()> 0) {
-//            projection_album, null, null, sortOrder)) {
-//            int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
-//            int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME);
             int nameAlbum = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
             int idAlbum = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID);
             int nameArtist = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
-//            int durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
-//            int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE);
               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                   relPath = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.RELATIVE_PATH);
               } else {
                   relPath = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
               }
-//            int external_uri = cursor.getColumnIndexOrThrow(String.valueOf(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI));
             while (cursor.moveToNext()  &&  AlbumList.size() < MainActivity.ALBUM_MAX) {
-//                long id = cursor.getLong(idColumn);
-//                String name = cursor.getString(nameColumn);
                 String artist = cursor.getString(nameArtist);
                 String relP = cursor.getString(relPath);
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -656,8 +647,6 @@ public class SoundScreen extends AppCompatActivity {
                         if (m.matches()  &&  !mr.matches()) {
                             startFolder= startFolder.substring("/storage/....-..../".length());
                         }
-//                        if (relP.startsWith("Sound"))
-//                            continue;
                         if (!relP.startsWith(startFolder)  &&  !MainActivity.always_show_favorites_cfg) {
                             continue;
                         }
@@ -668,14 +657,6 @@ public class SoundScreen extends AppCompatActivity {
                     }
                 }
 
-//                album = cursor.getString(titleColumn);
-//                if (album.equalsIgnoreCase("whatsapp audio")) continue;
-//                int duration = cursor.getInt(durationColumn);
-//                int size = cursor.getInt(sizeColumn);
-//                Uri external_uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-//                album= album + "(" + relP + ")";
-//                musicList.add(new MusicElement(contentUri, name, album, artist, duration, size));
-//                musicList.add(new MusicElement(contentUri, album));
                 long album_id = cursor.getLong(idAlbum);
                 Uri contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, album_id);
                 if (relP== null)
@@ -772,68 +753,9 @@ public class SoundScreen extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-// control buttons drawing
-// Album - Directories
-// Directory - albums
-
-
-//            lv.setOrientation(VERTICAL);
-
-/*
-            Button baldir = new Button(getApplicationContext());
-            createChangeViewButton(baldir, R.drawable.folder_in_album_foreground, "Альбом - Папки", directoryAlbum);
-            lh.addView(baldir);
-
-            Button bdiral = new Button(getApplicationContext());
-            createChangeViewButton(bdiral, R.drawable.album_in_folder_foreground, "Папка - Альбомы", !directoryAlbum);
-            lh.addView(bdiral);
-
-            bquestion = new ImageButton (getApplicationContext());
-            bquestion.setImageResource(R.drawable.sign_question_foreground);
-            bquestion.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            0
-                    )
-            );
-            bquestion.setMaxHeight(28);
-            bquestion.setMaxWidth(28);
-            bquestion.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    bquestion.setImageResource(R.drawable.sign_question_negative_foreground);
-//                String selAlbum = album;
-                    Intent intent = new Intent(v.getContext(), com.audiobook.pbp_service.HelpBookSelect.class);
-                    startActivityForResult(intent, MainActivity.HELP_BOOK_SELECT_REQUEST_CODE);
-//                    startActivity(intent);
-                }
-            });
-
-
-            lh.addView(bquestion);
-
-            linearLayout.addView(lh);
-
- */
-
-/*
-            if (directoryAlbum) {
-                lh = new LinearLayout (getApplicationContext());
-                Switch showOneAlbumInFolders = new Switch(getApplicationContext());
-                showOneAlbumInFolders.setText("Показывать название альбома в папке, даже если в ней всего один альбом");
-                lh.addView(showOneAlbumInFolders);
-                linearLayout.addView(lh);
-            }
- */
-
             show_book_list_to_lh ();
-//            show_screen. setText(to_show);
-
         }
-//        else {
-//            show_screen.setText(String.format("NOTHING IN THIS PHONE"));
-//        }
+
         if (AlbumList.size()== 0) {
             LinearLayout lh = new LinearLayout (getApplicationContext());
             TextView textNoBook= new TextView(getApplicationContext());
@@ -856,16 +778,12 @@ public class SoundScreen extends AppCompatActivity {
                 }
             }
             lh = new LinearLayout(getApplicationContext());
-//            sv = new SurfaceView(getApplicationContext());
-//            sv = new SurfaceView(getApplicationContext());
-//                LinearLayout lh = new LinearLayout (getApplicationContext());
             if (i == RL_size) {
                 TextView textDivider = new TextView(getApplicationContext());
                 textDivider.setText(" ");
                 lh.addView(textDivider);
                 linearLayout.addView(lh);
                 lh = new LinearLayout(getApplicationContext());
-//                sv = new SurfaceView(getApplicationContext());
                 lv = new LinearLayout(getApplicationContext());
                 lv.setOrientation(VERTICAL);
             }
@@ -899,7 +817,6 @@ public class SoundScreen extends AppCompatActivity {
                                             AlbumList.get(i).reading_state);
 
                                 lh.addView(b);
-//                                        int ih= b.getMeasuredHeightAndState();
 
                                 fileExist = albumFileExist(AlbumList.get(i).album);
                                 if (show_cover) {
@@ -947,7 +864,6 @@ public class SoundScreen extends AppCompatActivity {
                                                     10
                                             )
                                     );
-//                                            bDel.setForegroundGravity(Gravity.BOTTOM);
                                     lv.addView(bDel);
                                     lh.addView(lv);
 
@@ -990,9 +906,7 @@ public class SoundScreen extends AppCompatActivity {
                                         AlbumList.get(i).uri,
                                         960,
                                         AlbumList.get(i).dir,
-//                                                AlbumList.get(i).album,
                                         AlbumList.get(i).dir,
-//                                                "",
                                         AlbumList.get(i).album,
                                         true,
                                         true,
@@ -1003,13 +917,11 @@ public class SoundScreen extends AppCompatActivity {
                                 fileExist = albumFileExist(AlbumList.get(i).album);
                                 ImageButton bReadStat = new ImageButton(getApplicationContext());
                                 if (show_cover) {
-//                                    createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).album, fileExist, AlbumList.get(i).reading_state, lh, i, lv);
                                     createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).dir, fileExist, AlbumList.get(i).reading_state, lh, i, lv);
                                     lv.addView(bReadStat);
                                 }
                                 if (!show_cover) {
                                     if (fileExist) {
-//                                        createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).album, true, AlbumList.get(i).reading_state, lh, i);
                                         createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).dir, true, AlbumList.get(i).reading_state, lh, i);
                                         lh.addView(bReadStat);
                                     }
@@ -1090,7 +1002,6 @@ public class SoundScreen extends AppCompatActivity {
             Button b = new Button(getApplicationContext());
 
             if (!directoryAlbum) {
-//                b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.play_button_foreground, 0, 0, 0);
                 if (one_alb_some_dir == 0) {
                     if (i >= RL_size) {
                         if (!MainActivity.favorite_list_using ||
@@ -1105,7 +1016,6 @@ public class SoundScreen extends AppCompatActivity {
                                         906,
                                         AlbumList.get(i).album,
                                         "",
-//                                            AlbumList.get(i).dir,
                                         AlbumList.get(i).album,
                                         false,
                                         false,
@@ -1119,7 +1029,6 @@ public class SoundScreen extends AppCompatActivity {
                                         906,
                                         AlbumList.get(i).album,
                                         "",
-//                                            AlbumList.get(i).dir,
                                         AlbumList.get(i).album,
                                         false,
                                         false,
@@ -1136,7 +1045,6 @@ public class SoundScreen extends AppCompatActivity {
                             if (existInFavor(AlbumList.get(i).album, AlbumList.get(i).dir)) {
                                 line_in_favorite = true;
                             }
-//                            show_reading_status ();
                             createPlayButtonInBookList(b,
                                     AlbumList.get(i).uri,
                                     906,
@@ -1152,7 +1060,6 @@ public class SoundScreen extends AppCompatActivity {
                     }
                 }
                 if (one_alb_some_dir > 0) {
-//                    b.setText(AlbumList.get(i).dir);
                     if (!MainActivity.favorite_list_using ||
                             one_alb_some_dir_favorite > 0 ||
                             (MainActivity.favorite_list_using &&
@@ -1180,12 +1087,6 @@ public class SoundScreen extends AppCompatActivity {
                 ImageButton bReadStat = new ImageButton(getApplicationContext());
                 lv = new LinearLayout(getApplicationContext());
                 lv.setOrientation(VERTICAL);
-
-//                        final ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-//                        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-//                        layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
-//                        lv.setLayoutParams(layoutParams);
-//                        lv.setBackgroundColor(R.id.in_read_button);
 
                 if (one_alb_some_dir == 0) {
                     if (i >= RL_size) {
@@ -1345,8 +1246,6 @@ public class SoundScreen extends AppCompatActivity {
             }
 
             if (directoryAlbum) {
-//                        lv = new LinearLayout (getApplicationContext());
-//                        lv.setOrientation(VERTICAL);
                 if (one_dir_some_alb == 0) {
                     if (!MainActivity.favorite_list_using ||
                             (MainActivity.favorite_list_using &&
@@ -1431,7 +1330,6 @@ public class SoundScreen extends AppCompatActivity {
                                 createPlayButtonInBookList(b,
                                         AlbumList.get(i).uri,
                                         906,
-//                                    AlbumList.get(i).dir,
                                         AlbumList.get(i).album,
                                         AlbumList.get(i).dir,
                                         AlbumList.get(i).album,
@@ -1468,7 +1366,6 @@ public class SoundScreen extends AppCompatActivity {
                     }
                 }
                 if (one_dir_some_alb > 0) {
-//                    b.setText(AlbumList.get(i).dir);
                     if (!MainActivity.favorite_list_using ||
                             one_dir_some_alb_favorite > 0 ||
                             (MainActivity.favorite_list_using &&
@@ -1502,27 +1399,12 @@ public class SoundScreen extends AppCompatActivity {
                         ImageButton bView = new ImageButton(getApplicationContext());
                         ImageButton bFavor = new ImageButton(getApplicationContext());
                         ImageButton bReadStat = new ImageButton(getApplicationContext());
-//                                if (one_alb_some_dir == 0) {
-//                                if (one_dir_some_alb == 0) {
-//                                    if (i >= RL_size) {
                         createViewButtonInBookList(bView,
                                 AlbumList.get(i).album,
                                 AlbumList.get(i).dir,
                                 AlbumList.get(i).reading_state);
                         createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).album, true, AlbumList.get(i).reading_state, lh, i, lv);
                         createFavorButtonInBookList(bFavor, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                    } else {
-//                                        createVieButtonInBookList          (bView, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                        createReadingStatusButtonInBookList(bReadStat, AlbumList.get(i).album, true, AlbumList.get(i).reading_state);
-//                                        createFavorButtonInBookList        (bFavor, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                    }
-                        //                               }
-//                                if (one_alb_some_dir> 0) {
-//                                    createVieButtonInBookList              (bView, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                    createReadingStatusButtonInBookList    (bReadStat, AlbumList.get(i).album, true, AlbumList.get(i).reading_state);
-//                                    createFavorButtonInBookList            (bFavor, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                }
-
                         fileExist = albumFileExist(AlbumList.get(i).album);
                         if (show_cover && one_dir_some_alb == 0) {
                             lv = new LinearLayout(getApplicationContext());
@@ -1537,7 +1419,6 @@ public class SoundScreen extends AppCompatActivity {
                         if (show_cover && one_dir_some_alb == 0) {
                             lv.addView((bView));
                             lv.addView((bFavor));
-//                                    lh.addView(lv);
                             if (AlbumList.get(i).reading_state == MainActivity.I_READ) {
                                 lh.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
                             }
@@ -1557,16 +1438,7 @@ public class SoundScreen extends AppCompatActivity {
                         }
 
                         ImageButton bDel = new ImageButton(getApplicationContext());
-//                                if (one_alb_some_dir == 0) {
-//                                    if (i >= RL_size) {
-//                                        createDelButtonInBookList(bDel, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                    } else {
-//                                        createDelButtonInBookList(bDel, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                    }
-//                                }
-//                                if (one_alb_some_dir> 0) {
                         createDelButtonInBookList(bDel, AlbumList.get(i).album, AlbumList.get(i).dir, AlbumList.get(i).reading_state);
-//                                }
                         if (show_cover && one_dir_some_alb == 0) {
                             lv.addView(bDel);
                             lh.addView(lv);
@@ -1619,9 +1491,6 @@ public class SoundScreen extends AppCompatActivity {
             one_any_file= true;
 
         cleared_sel_album = selAlbum.replace("\'", "\'\'");
-//        List<MusicElement> musicList = (List<MusicElement>) getIntent().getSerializableExtra("AllMusics");
-        //       List<AlbumElement> AlbumList = (List<AlbumElement>) getIntent().getSerializableExtra("AllAlbums");
-// ---------------------------------------
         Uri allsongsuri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             allsongsuri = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
@@ -1629,13 +1498,7 @@ public class SoundScreen extends AppCompatActivity {
             allsongsuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         }
 
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 OR " + MediaStore.Audio.Media.IS_AUDIOBOOK + " != 0";
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 AND " +
         String selection = "";
-//        if (!selAlbum.isEmpty()) {
-//            selection = " " +
-//                    MediaStore.Audio.Media.ALBUM + " = \'" + clearedSelAlbum + "\'";
-//        }
         if (selAlbum.isEmpty()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 selection = " " +
@@ -1646,16 +1509,13 @@ public class SoundScreen extends AppCompatActivity {
             }
             selection = "";
         }
-//        String sortOrder = MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC ";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             projects = SoundScreen.projection;
             sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         } else {
             projects = SoundScreen.old_projection;
             sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         }
 
         if (!one_any_file) {
@@ -1671,7 +1531,6 @@ public class SoundScreen extends AppCompatActivity {
             int durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
             int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE);
             int nameComposer = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.COMPOSER);
-//            int nameAuthor = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.AUTHOR);
             if (one_any_file) {
                 relPath = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
             }
@@ -1682,14 +1541,10 @@ public class SoundScreen extends AppCompatActivity {
                     relPath = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
                 }
             }
-//            int track= cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TRACK);
-//            int cd_track= cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.CD_TRACK_NUMBER);
 
             SoundScreen.musicList.clear();
             //int external_uri = cursor.getColumnIndexOrThrow(String.valueOf(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI));
             while (cursor.moveToNext()) {
-//                int num_track= cursor.getInt(track);
-//                int cd_track_number= cursor.getInt(cd_track);
                 long id = cursor.getLong(idColumn);
                 String file_name = cursor.getString(nameColumn);
                 String name = cursor.getString(nameTitle);
@@ -1709,9 +1564,6 @@ public class SoundScreen extends AppCompatActivity {
                         continue;
                 }
 
-//                if (relP== null)
-//                    continue;
-//                album = cursor.getString(titleColumn);
                 long album_id = cursor.getLong(idAlbum);
                 int duration = cursor.getInt(durationColumn);
                 int size = cursor.getInt(sizeColumn);
@@ -1726,7 +1578,6 @@ public class SoundScreen extends AppCompatActivity {
                 String composer = cursor.getString(nameComposer);
                 if (composer== null)
                     composer= "";
-//                String author= cursor.getString(nameAuthor);
                 if (dirWay.isEmpty()) {
 
                         SoundScreen.musicList.add(new MusicElement(contentUri,
@@ -1781,7 +1632,6 @@ public class SoundScreen extends AppCompatActivity {
         int loc_relPath = 0;
 
         if (!MainActivity.hasPermissions(this)) {
-//            MainActivity.requestPermissions_local(this, MainActivity.PERMISSION_STORAGE);
             Snackbar.make(findViewById(R.id.main_layout), R.string.delete_permission,
                     Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok, new View.OnClickListener() {
                 @Override
@@ -1793,24 +1643,6 @@ public class SoundScreen extends AppCompatActivity {
                 }
             }).show();
         }
-/*        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            Snackbar.make(findViewById(R.id.sound_screen), R.string.delete_permission,
-                    Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok, new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Request the permission
-                    ActivityCompat.requestPermissions(SoundScreen.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            PERMISSION_REQUEST_STORAGE_WRITE);
-                }
-            }).show();
-        }
-
- */
-
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                == PackageManager.PERMISSION_GRANTED) {
             if (MainActivity.hasPermissions(this)) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                     List<Uri> urisToModify = new ArrayList<Uri>();
@@ -1893,7 +1725,6 @@ public class SoundScreen extends AppCompatActivity {
                                         if (!miFile.delete())
                                             Toast.makeText(getApplicationContext(), miFile.toString() + " not delete!", Toast.LENGTH_LONG).show();
                                     }
-//                                delOneFile(MainActivity.WORK_FILE_NAME);
                                     MainActivity.selAlbum = "";
                                     SelectParts.ArrayParts.clear();
                                     SelectParts.PartNum.clear();
@@ -1981,15 +1812,12 @@ public class SoundScreen extends AppCompatActivity {
 
                                     if (delAlbum.equals(MainActivity.selAlbum)) {
                                         SoundScreen.musicList.clear();
-//                                        delOneFile(MainActivity.WORK_FILE_NAME);
                                         // work file writing
                                         miFile = new File(directory, MainActivity.WORK_FILE_NAME);
                                         if (miFile.exists()) {
                                             if (!miFile.delete())
                                                 Toast.makeText(getApplicationContext(), miFile.toString() + " not delete!", Toast.LENGTH_LONG).show();
                                         }
-//                                if (!com.audiobook.pbp_service.MainActivity.selAlbum.equals(""))
-//                                    delOneFile(com.audiobook.pbp_service.MainActivity.selAlbum);    // for local library file writing
                                         MainActivity.selAlbum = "";
                                         SelectParts.ArrayParts.clear();
                                         SelectParts.PartNum.clear();
@@ -1997,8 +1825,6 @@ public class SoundScreen extends AppCompatActivity {
                                     }
                                 }
                             }
-
-//                            setContentView(R.layout.activity_sound_screen);
                             AlbumList.clear();
                             try {
                                 getAllSongsFromSDCARD();
@@ -2057,7 +1883,6 @@ public class SoundScreen extends AppCompatActivity {
                     }
                 }
                 fis.close();
-//                delOneFile(MainActivity.READING_LIST_FILE_NAME);
             }
         }
         miFile.createNewFile();
@@ -2083,9 +1908,6 @@ public class SoundScreen extends AppCompatActivity {
         int read_from_list= 0;
 
         File directory = getFilesDir();
-//        for (int i= 0 ; i< sortAlbumList.size();) {
-//            sortAlbumList.remove(i);
-//        }
         sortAlbumList.clear();
         File miFile = new File(directory, MainActivity.READING_LIST_FILE_NAME);
         if (miFile.exists()) {
@@ -2140,7 +1962,6 @@ public class SoundScreen extends AppCompatActivity {
                             if ((AlbumList.get(kl).album).equals(lastReadingAlbums[j])  &&
                                 AlbumList.get(i).dir.isEmpty()) {
                                 sortAlbumList.add(asli++, AlbumList.get(kl));
-//                                AlbumList.remove(kl);   // убираем дубль в основном списке
                                 found_empty_dir= true;
                                 break;
                             }
@@ -2157,10 +1978,6 @@ public class SoundScreen extends AppCompatActivity {
                     if (lastReadingDirs[j]!= null) {
                         if (AlbumList.get(i).dir.equalsIgnoreCase(lastReadingDirs[j])) {
                             sortAlbumList.add(asli++, AlbumList.get(i));
-//                            for (k = i; k < AlbumList.size() - 1; k++) {
-//                                AlbumList.set(k, AlbumList.get(k + 1));
-//                            }
-//                            AlbumList.remove(k);  // убираем дубль в основном списке
                         }
                     }
                 }
@@ -2172,7 +1989,6 @@ public class SoundScreen extends AppCompatActivity {
                 sortAlbumList.add(i+ k, AlbumList.get(i));
             AlbumList.clear();
             AlbumList.addAll(sortAlbumList);
-//            sortAlbumList.clear();
         }
         return read_from_list;
     }
@@ -2194,7 +2010,6 @@ public class SoundScreen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AlbumScreen.DELETE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-//                setContentView(R.layout.activity_sound_screen);
                 AlbumList.clear();
                 try {
                     getAllSongsFromSDCARD();
@@ -2204,8 +2019,6 @@ public class SoundScreen extends AppCompatActivity {
             }
         }
         if (requestCode == MainActivity.HELP_BOOK_SELECT_REQUEST_CODE) {
-//            bquestion.setImageResource(R.drawable.sign_question_foreground);
-//            getAllSongsFromSDCARD();
         }
 
     }
@@ -2213,18 +2026,13 @@ public class SoundScreen extends AppCompatActivity {
     public void testBrightness() {
         if (MainActivity.full_brightness) {
             WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-//            if (layoutParams.screenBrightness< 1)
-//                sourceBrightness= layoutParams.screenBrightness;
             layoutParams.screenBrightness = BRIGHTNESS_OVERRIDE_FULL;
             getWindow().setAttributes(layoutParams);
         }
         if (!MainActivity.full_brightness) {
-//            if (sourceBrightness> 0) {
             WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-//            layoutParams.screenBrightness = sourceBrightness;
             layoutParams.screenBrightness = -1;
             getWindow().setAttributes(layoutParams);
-//            }
         }
     }
 
@@ -2275,9 +2083,7 @@ public class SoundScreen extends AppCompatActivity {
                                             int album_reading_state) {
 
         Resources res = getApplicationContext().getResources();
-//        b.setCompoundDrawablesWithIntrinsicBounds (butIcon, butIcon, butIcon, butIcon);
         b.setMinHeight(26);
-//        b.setPadding(6, b.getPaddingTop(), b.getPaddingRight(), b.getPaddingBottom());
 
         if (mini_anyway) {
             truncate_allow= true;
@@ -2290,12 +2096,10 @@ public class SoundScreen extends AppCompatActivity {
         }
         if (naming.length()== 0)
             naming= curAlbum;
-//        if (checkIsTablet()) {
         if (show_cover) {
             b.setTextSize(18);
             if (!MainActivity.show_full_book_name)
                 b.setMaxLines(6);
-//            b.setTextSize(16);
         }
         if (!show_cover) {
             b.setTextSize(17);
@@ -2365,7 +2169,6 @@ public class SoundScreen extends AppCompatActivity {
                         drwFromBMP = new BitmapDrawable(thumbnail);
                         drwFromBMP.setBounds(6, 0, 389* corrector_size/ 100, 296* corrector_size/ 100);
                         b.setCompoundDrawables(drwFromBMP, null, null, null);
-//                        saveEmbeddedImage(curAlbum);
                     } else {
                         if (!getPreparedImageInFolder(curAlbum)) {
                             songUri = albumGetOneUri(curAlbum, dirWay);
@@ -2377,7 +2180,6 @@ public class SoundScreen extends AppCompatActivity {
                             }
                             if (songUri != null) {
                                 b.setCompoundDrawablePadding(9);
-//                        mmr = new MediaMetadataRetriever();
                                 mmr.setDataSource(getApplicationContext(), songUri);
                                 data = mmr.getEmbeddedPicture();
                                 if (data != null) {
@@ -2386,15 +2188,8 @@ public class SoundScreen extends AppCompatActivity {
                                     drwFromBMP = new BitmapDrawable(thumbnail);
                                     drwFromBMP.setBounds(6, 6, 389* corrector_size/ 100, 389* corrector_size/ 100);
                                     b.setCompoundDrawables(drwFromBMP, null, null, null);
-//                        else
-//                            drwFromBMP.setBounds(6, 6, 206, 206);
-//                        b.setCompoundDrawables(drwFromBMP, null, null, null);
                                 }
                                 if (data == null) {
-//                    Resources res = getApplicationContext().getResources();
-//                    drwFromBMP = res.getDrawable(R.drawable.headphones);
-//                b.setBackground(d);
-//                b.setCompoundDrawables(null, null, d, null);
                                     if (!seekEmbeddedImage(curAlbum)) {
                                         b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.headphones, 0, 0, 0);
                                         thumbnail = BitmapFactory.decodeResource(res, R.drawable.headphones);
@@ -2419,63 +2214,26 @@ public class SoundScreen extends AppCompatActivity {
                         }
                     }
                 }
-//                if (one_alb_some_dir != 0 || one_dir_some_alb != 0) {
-//                    drwFromBMP.setBounds(6, 6, 206, 206);
-//                    b.setCompoundDrawables(drwFromBMP, null, null, null);
-//                }
             } catch (RuntimeException e) {
-//            Resources res = getApplicationContext().getResources();
-//            Drawable d = res.getDrawable(R.drawable.headphones);
-//            Drawable pd = res.getDrawable(R.drawable.play_button_foreground);
-//            b.setCompoundDrawables(pd, null, d, null);
                 if (one_alb_some_dir== 0  &&  one_dir_some_alb== 0) {
                     b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.headphones, 0, 0, 0);
                     thumbnail= BitmapFactory.decodeResource(res, R.drawable.headphones);
                     saveEmbeddedImage(curAlbum);
                 }
             } catch (FileNotFoundException e) {
-//                e.printStackTrace();
                 b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.headphones, 0, 0, 0);
                 thumbnail= BitmapFactory.decodeResource(res, R.drawable.headphones);
                 saveEmbeddedImage(curAlbum);
             }
-//            mmr.release();
         }
         else {
             b.setPadding(0, b.getPaddingTop(), 0, b.getPaddingBottom());
             b.setCompoundDrawablesWithIntrinsicBounds (R.drawable.play_button_foreground, 0, 0, 0);
         }
 
-//        int bViewHeight= b.getHeight();
-//        Layout blayout= b.getLayout();
-//        final Paint paint = b.getPaint();
-//        final int endPos = naming.length();
-//        int startPos = 0;
-//        int breakCount = 0;
-//        float bwidth= (float) (b.getTextSize());
-//        float[] measuredWidth = new float[(int) 1];
-//
-//        while (startPos < endPos) {
-//            startPos += paint.breakText(naming.substring(startPos, endPos),
-//                    true,  bwidth, /*measuredWidth*/ null);
-//            breakCount++;
-//            if (breakCount> 3) {
-//                b.setText(naming.substring (0, startPos) + "...");
-//                break;
-//            }
-//        }
-
-//        breakCount= paint.breakText(naming.substring(startPos, endPos),
-//                true,  bwidth, (float[]) null);
-
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// Click button PLAY on Album list
-                //linearLayout.removeView(v);
-                //b.setText("PRESSED");
-//                String selAlbum = b.getText().toString();
-//                String selAlbum = curAlbum;
                 try {
                     saveToReadingList (curAlbum, dirWay);
                 } catch (IOException e) {
@@ -2501,8 +2259,6 @@ public class SoundScreen extends AppCompatActivity {
                 MainActivity.current_directory= dirWay;
                 Intent intent = new Intent();
                 if (curAlbum.isEmpty()  && !dirWay.isEmpty()) {
-//                    String buff;
-//                    buff= dirWay.substring(0, st0.length()).equalsIgnoreCase(st0);
                     if (dirWay.contains(st0)) {
                         intent.putExtra(ALBUM_NAME, dirWay.substring(st0.length()));
                     }
@@ -2517,9 +2273,7 @@ public class SoundScreen extends AppCompatActivity {
                 }
                 else
                     intent.putExtra(ALBUM_NAME, curAlbum);
-//                        startActivity(intent);
                 setResult(RESULT_OK, intent);
-//                        onBackPressed();
                 finish();
             }
         });
@@ -2559,7 +2313,6 @@ public class SoundScreen extends AppCompatActivity {
                         0
                 )
         );
-//        bView.setMaxHeight(28);
         bView.setMaxWidth(28);
 
         if (album_reading_state== MainActivity.I_READ) {
@@ -2581,7 +2334,6 @@ public class SoundScreen extends AppCompatActivity {
         bView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                bView.setImageResource(R.drawable.view_button_foreground_negative);
                 try {
                     reading_status= changeSigneRead (album);
                 } catch (IOException e) {
@@ -2634,7 +2386,6 @@ public class SoundScreen extends AppCompatActivity {
                     lh.setBackgroundColor(getResources().getColor(R.color.do_not_read_color, getTheme()));
                 }
                 if (selAlbum.equalsIgnoreCase(album)) {
-//                    bView.setImageResource(R.drawable.reading_status_no);
                     for (int i= 0; i< chldcnt; i++) {
                         lh.getChildAt(i).setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
                     }
@@ -2645,25 +2396,6 @@ public class SoundScreen extends AppCompatActivity {
                         lv.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
                     lh.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
                 }
-
-//                setContentView(R.layout.activity_sound_screen);
-//                AlbumList.clear();
-/*
-                try {
-//                    getAllSongsFromSDCARD();
-                    show_book_list();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
- */
-
-
-//                bView.setImageResource(R.drawable.reading_status);
-//                Intent intent = new Intent(v.getContext(), com.audiobook.pbp_service.AlbumScreen.class);
-//                intent.putExtra(ALBUM_NAME, album);
-//                intent.putExtra(DIR_WAY, dirWay);
-//                startActivity(intent);
             }
         });
     }
@@ -2673,7 +2405,6 @@ public class SoundScreen extends AppCompatActivity {
                                            String dirWay_loc,
                                            int album_reading_state) {
 
-//        Toast.makeText(getApplicationContext(), "ALBUM=" + album_loc + ", dir=" + dirWay_loc, Toast.LENGTH_LONG).show();
         bView.setImageResource(R.drawable.view_button_foreground);
         if (show_cover  &&  one_alb_some_dir== 0  &&  one_dir_some_alb== 0)
             bView.setPadding(bView.getPaddingLeft(), 5, bView.getPaddingRight(), 4);
@@ -2686,7 +2417,7 @@ public class SoundScreen extends AppCompatActivity {
                         0
                 )
         );
-//        bView.setMaxHeight(28);
+
         bView.setMaxWidth(28);
         if (album_reading_state== MainActivity.I_READ) {
             bView.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
@@ -2704,7 +2435,6 @@ public class SoundScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bView.setImageResource(R.drawable.view_button_foreground_negative);
-//                String selAlbum = album;
                 Intent intent = new Intent(v.getContext(), AlbumScreen.class);
                 intent.putExtra(ALBUM_NAME, album_loc);
                 intent.putExtra(DIR_WAY, dirWay_loc);
@@ -2724,7 +2454,6 @@ public class SoundScreen extends AppCompatActivity {
             bView.setImageResource(R.drawable.ic_favorite_icon_foreground);
         }
         if (show_cover  &&  one_alb_some_dir== 0  &&  one_dir_some_alb== 0)
-//            bView.setPadding(bView.getPaddingLeft(), bView.getPaddingTop(), bView.getPaddingRight(), bView.getPaddingBottom());
             bView.setPadding(bView.getPaddingLeft(), 4, bView.getPaddingRight(), 5);
         else
             bView.setPadding(6, bView.getPaddingTop(), 6, bView.getPaddingBottom());
@@ -2735,7 +2464,6 @@ public class SoundScreen extends AppCompatActivity {
                         0
                 )
         );
-//        bView.setMaxHeight(28);
         bView.setMaxWidth(28);
         if (album_reading_state== MainActivity.I_READ) {
             bView.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
@@ -2782,22 +2510,17 @@ public class SoundScreen extends AppCompatActivity {
 
         bDel.setImageResource(R.drawable.trash_button_foreground);
         if (show_cover  &&  one_alb_some_dir== 0  &&  one_dir_some_alb== 0)
-//            bDel.setPadding(bDel.getPaddingLeft(), bDel.getPaddingTop(), bDel.getPaddingRight(), bDel.getPaddingBottom());
             bDel.setPadding(bDel.getPaddingLeft(), 5, bDel.getPaddingRight(), 5);
         else
             bDel.setPadding(6, bDel.getPaddingTop(), 0, bDel.getPaddingBottom());
         bDel.setLayoutParams(
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-//                        LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         0
                 )
         );
-//        bDel.setMaxHeight(28);
         bDel.setMaxWidth(26);
-//                if (MainActivity.currentAlbum.equals(AlbumList.get(i).album))
-//                    bDel.setEnabled(false);
         if (album_reading_state== MainActivity.I_READ) {
             bDel.setBackgroundColor(getResources().getColor(i_read_color, getTheme()));
         }
@@ -2819,10 +2542,6 @@ public class SoundScreen extends AppCompatActivity {
                     mediaPlayer.release();
                     mediaPlayer = new MediaPlayer();
                 }
-//                String selAlbum = b.getText().toString();
-//                String selAlbum = album;
-//                Uri miUri = Uri.parse (b.getContentDescription().toString());
-//                Uri miUri = uri;
                 delOneAlbum (album, uri);
             }
         });
@@ -2845,13 +2564,11 @@ public class SoundScreen extends AppCompatActivity {
         b.setLayoutParams(
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-//                        LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         0
                 )
         );
 
-//        b.setMaxHeight(28);
         b.setMaxWidth(28);
         if (cur_track) {
             b.setBackgroundColor(getResources().getColor(R.color.white, getTheme()));
@@ -2869,36 +2586,6 @@ public class SoundScreen extends AppCompatActivity {
         }
         lh.addView(b);
     }
-
-/*
-    public void createChangeViewButton (Button baldir, int butIcon, String naming, boolean enabl) {
-
-        baldir.setCompoundDrawablesWithIntrinsicBounds (0, 0, butIcon, 0);
-        baldir.setText(naming);
-        baldir.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        6
-                )
-        );
-        baldir.setGravity(Gravity.LEFT);
-        baldir.setAllCaps(false);
-        baldir.setEnabled(enabl);
-
-
-        baldir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                directoryAlbum= !directoryAlbum;
-                setContentView(R.layout.activity_sound_screen);
-                AlbumList.clear();
-                getAllSongsFromSDCARD();
-            }
-        });
-    }
-
- */
 
     public static boolean testNamesInSelect(Uri uris, String selection, String dirWay, String sortOrder) {
 
@@ -3170,7 +2857,6 @@ public class SoundScreen extends AppCompatActivity {
                         }
                     }
                     if (MainActivity.textBuf!= null) {
-//                    MainActivity.textBuf = String.format("%d,%d\n", loc_lesson, loc_read_state);  // прослушиваемый сейчас трек и признак прочтения
                         outputStreamWriter.write(MainActivity.textBuf);
                         outputStreamWriter.write("\n");
                         while ((MainActivity.textBuf = reader.readLine()) != null) {
@@ -3182,7 +2868,6 @@ public class SoundScreen extends AppCompatActivity {
             }
         }
         outputStreamWriter.close();
-//        fis_out.close();
         miFile.delete();
         miFile_out.renameTo(miFile);
 
@@ -3210,7 +2895,6 @@ public class SoundScreen extends AppCompatActivity {
         int     music_quan= 0, lesson= 0, loc_reading_status= 0;
         Uri uri;
 
-//        File directory = getFilesDir();
         File directory = MainActivity.directory_cfg;
         nameFile= nameFile.replaceAll("/", " ");
         File miFile = new File(directory, nameFile);
@@ -3286,8 +2970,6 @@ public class SoundScreen extends AppCompatActivity {
         String[] projects;
 
         clearedSelAlbum = selAlbum.replace("\'", "\'\'");
-//        List<MusicElement> musicList = (List<MusicElement>) getIntent().getSerializableExtra("AllMusics");
-        //       List<AlbumElement> AlbumList = (List<AlbumElement>) getIntent().getSerializableExtra("AllAlbums");
 // ---------------------------------------
         Uri allsongsuri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -3296,8 +2978,6 @@ public class SoundScreen extends AppCompatActivity {
             allsongsuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         }
 
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 OR " + MediaStore.Audio.Media.IS_AUDIOBOOK + " != 0";
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 AND " +
         String selection = "";
         if (!selAlbum.isEmpty()) {
             selection = " " +
@@ -3313,16 +2993,13 @@ public class SoundScreen extends AppCompatActivity {
             }
             selection = "";
         }
-//        String sortOrder = MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC ";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             projects = SoundScreen.projection;
             sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         } else {
             projects = SoundScreen.old_projection;
             sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         }
 
         try (Cursor cursor = getApplicationContext().getContentResolver().query(allsongsuri, projects, selection, null, sortOrder)) {
@@ -3376,7 +3053,6 @@ public class SoundScreen extends AppCompatActivity {
             return false;
         in = new FileInputStream(miFile);
         try {
-//            thumbnail= BitmapFactory.decodeFile(fileName);
             thumbnail= BitmapFactory.decodeStream(in);
         } catch (Exception e) {
             e.printStackTrace();
@@ -3403,8 +3079,6 @@ public class SoundScreen extends AppCompatActivity {
             return false;
         int ind = dirWay.lastIndexOf("/");
         dirWay= dirWay.substring(0, ind+ 1);
-//        dirWay= shortDirWay;
-//        File directory = getFilesDir();
         File miFile;
         String fileName= dirWay + "folder.jpg";
         File sdPath = Environment.getExternalStorageDirectory();
@@ -3433,11 +3107,8 @@ public class SoundScreen extends AppCompatActivity {
             if (miFile.exists() == false)
                 return false;
         }
-//        boolean canr= false;
-//        canr= miFile.canRead();
         in = new FileInputStream(miFile);
         try {
-//            thumbnail= BitmapFactory.decodeFile(fileName);
             thumbnail= BitmapFactory.decodeStream(in);
         } catch (Exception e) {
             e.printStackTrace();
@@ -3464,8 +3135,6 @@ public class SoundScreen extends AppCompatActivity {
             return null;
 
         clearedSelAlbum = curAlbum.replace("\'", "\'\'");
-//        List<MusicElement> musicList = (List<MusicElement>) getIntent().getSerializableExtra("AllMusics");
-        //       List<AlbumElement> AlbumList = (List<AlbumElement>) getIntent().getSerializableExtra("AllAlbums");
 // ---------------------------------------
         Uri allsongsuri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -3474,21 +3143,16 @@ public class SoundScreen extends AppCompatActivity {
             allsongsuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         }
 
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 OR " + MediaStore.Audio.Media.IS_AUDIOBOOK + " != 0";
-//        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 AND " +
         String selection = "";
             selection = " " +
                     MediaStore.Audio.Media.ALBUM + " = \'" + clearedSelAlbum + "\'";
-//        String sortOrder = MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC ";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             projects = SoundScreen.projection;
             sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.RELATIVE_PATH + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         } else {
             projects = SoundScreen.old_projection;
             sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.DISPLAY_NAME + " ASC ";
-//            sortOrder = MediaStore.Audio.Media.DATA + " ASC, " + MediaStore.Audio.Media.TITLE + " ASC ";
         }
 
         try (Cursor cursor = getApplicationContext().getContentResolver().query(allsongsuri, projects, selection, null, sortOrder)) {
@@ -3504,7 +3168,6 @@ public class SoundScreen extends AppCompatActivity {
                 long id = cursor.getLong(idColumn);
                 Uri contentUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
                 cursor.close();
-//                String absP= contentUri.getPathSegments()
                 return relP;
             }
         } catch (Exception e) {
@@ -3512,7 +3175,4 @@ public class SoundScreen extends AppCompatActivity {
         }
         return null;
     }
-
-
-
 }
