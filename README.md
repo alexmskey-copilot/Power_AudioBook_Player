@@ -38,6 +38,7 @@ This approach ensures **maintainability, testability, and scalability** — even
 
 > This project demonstrates full-cycle mobile development — from concept to a top-ranked app across **Russian, Chinese, and Korean** app stores.
 
+## 📸 Screenshots
 <img width="216" height="400" alt="image" src="https://github.com/user-attachments/assets/70c58422-75d8-4b75-b169-20016db0d237" />
 <img width="216" height="400" alt="image" src="https://github.com/user-attachments/assets/b8426cf4-50dd-4c22-bf59-e88ac4fc06fd" />
 
